@@ -1,15 +1,12 @@
-FROM openjdk:17-jdk-slim AS build
+FROM eclipse-temurin:21.0.2_13-jdk-jammy
 
-# Instalar Maven
-RUN apt-get update && apt-get install -y maven
-
-EXPOSE 8080
-
-# Define o diretório de trabalho
 WORKDIR /app
 
-# Copia o código fonte para o contêiner
-COPY . .
+COPY .mvn/ .mvn
+COPY mvnw pom.xml ./
 
-# Executa o comando Maven para construir o projeto
-RUN mvn clean install
+RUN ./mvnw dependency:go-offline
+
+COPY src ./src
+
+CMD ["./mvnw", "spring-boot:run"]
