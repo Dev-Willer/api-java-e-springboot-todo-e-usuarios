@@ -1,12 +1,13 @@
-FROM eclipse-temurin:21.0.2_13-jdk-jammy
+FROM maven:3.9.8-eclipse-temurin-21-alpine as builder
 
-WORKDIR /app
+COPY ./src src/
+COPY ./pom.xml pom.xml
 
-COPY .mvn/ .mvn
-COPY mvnw pom.xml ./
+RUN mvn clean verify
 
-RUN ./mvnw dependency:go-offline
+FROM eclipse-temurin:21-jre-alpine
 
-COPY src ./src
+COPY --from=builder target/*.jar task-management.jar
+EXPOSE 8080
 
-CMD ["./mvnw", "spring-boot:run"]
+CMD ["java", "-jar", "task-management.jar"]
