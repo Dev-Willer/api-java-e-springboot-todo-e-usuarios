@@ -3,6 +3,8 @@ FROM openjdk:17-jdk-slim AS build
 # Instalar Maven
 RUN apt-get update && apt-get install -y maven
 
+EXPOSE 8080
+
 # Define o diretório de trabalho
 WORKDIR /app
 
