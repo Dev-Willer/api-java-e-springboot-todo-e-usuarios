@@ -1,6 +1,32 @@
-TO-DO LIst Sobre o Curso!
+TO-DO LIST!
 
 Comando para startar a aplicação: **mvn spring-boot:run**
+
+Link do Deploy para requisições: https://api-java-e-springboot-todo-e-usuarios.onrender.com
+
+*Rotas:*
+
+Rota de criação de usuários que gerarão a task.
+*POST:* https://api-java-e-springboot-todo-e-usuarios.onrender.com/users
+
+- Deve se passar um Body com as informações:
+
+	"username": "exemplo",
+	"name": "exemplo exemplo",
+	"password": "XXXXXX"
+
+
+A rota abaixo funciona após a criação do usuário, você pode criar uma task desde que o usuário criado seja passado pelo Basic da requisição na aba Auth.
+*POST:* https://api-java-e-springboot-todo-e-usuarios.onrender.com/tasks/
+
+
+A rota lista todas as tasks que foram criadas, desde que seja fornecido na aba Auth Basic os dados de login do usuário. 
+*GET:* https://api-java-e-springboot-todo-e-usuarios.onrender.com/tasks/
+
+
+A rota edita toda a task ou apenas uma propriedade dela e exibe o resultado como retorno, desde que seja passado o usuário através da aba Auth utilizando o Basic.
+*PUT:* https://api-java-e-springboot-todo-e-usuarios.onrender.com/tasks/IdDaTask
+
 
 Aplicação hospedada no site da render: https://render.com/
 
